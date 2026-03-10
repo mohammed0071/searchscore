@@ -1,0 +1,1389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SearchScore - Find Out If AI Can Find You | GEO Audit Tool</title>
+  <meta name="description" content="SearchScore audits your website's visibility to ChatGPT, Perplexity, Google AI Overviews and Claude. Get your free GEO score in seconds." />
+
+  <!-- OG / Twitter -->
+  <meta property="og:title" content="SearchScore - Find Out If AI Can Find You" />
+  <meta property="og:description" content="Is your website visible to ChatGPT, Perplexity, Google AI Overviews and Claude? Get your free GEO audit score in seconds." />
+  <meta property="og:url" content="https://searchscore.io" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://searchscore.io/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="SearchScore - Find Out If AI Can Find You" />
+  <meta name="twitter:description" content="Is your website visible to ChatGPT, Perplexity, Google AI Overviews and Claude?" />
+  <meta name="twitter:image" content="https://searchscore.io/og-image.png" />
+
+  <!-- Schema.org -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "SearchScore",
+        "url": "https://searchscore.io",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web",
+        "description": "GEO (Generative Engine Optimisation) audit tool that scores your website's visibility to AI search engines including ChatGPT, Perplexity, Google AI Overviews and Claude.",
+        "offers": [
+          {
+            "@type": "Offer",
+            "name": "Free Score",
+            "price": "0",
+            "priceCurrency": "GBP",
+            "description": "Free overall GEO score"
+          },
+          {
+            "@type": "Offer",
+            "name": "Full Report",
+            "price": "97",
+            "priceCurrency": "GBP",
+            "description": "Complete audit with category breakdown, actionable fixes and PDF report"
+          },
+          {
+            "@type": "Offer",
+            "name": "Monthly Monitor",
+            "price": "49",
+            "priceCurrency": "GBP",
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "billingDuration": "P1M"
+            },
+            "description": "Weekly re-audits, change alerts and progress tracking"
+          },
+          {
+            "@type": "Offer",
+            "name": "Agency Pro",
+            "price": "199",
+            "priceCurrency": "GBP",
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "billingDuration": "P1M"
+            },
+            "description": "Unlimited client audits, white-label PDF reports and client dashboard"
+          }
+        ]
+      },
+      {
+        "@type": "Organization",
+        "name": "SearchScore",
+        "url": "https://searchscore.io",
+        "description": "GEO (Generative Engine Optimisation) audit and monitoring platform"
+      }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0a0f1e;
+      --navy-mid: #111827;
+      --navy-card: #141c2e;
+      --navy-border: #1e2d45;
+      --blue: #3B82F6;
+      --blue-bright: #60A5FA;
+      --blue-glow: rgba(59,130,246,0.25);
+      --cyan: #06B6D4;
+      --green: #10B981;
+      --amber: #F59E0B;
+      --red: #EF4444;
+      --text: #F1F5F9;
+      --text-muted: #94A3B8;
+      --text-dim: #64748B;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--navy);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ---- NAV ---- */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10,15,30,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--navy-border);
+      padding: 0 24px;
+    }
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      gap: 24px;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+    .nav-logo .logo-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--blue);
+      border-radius: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 16px;
+      color: white;
+    }
+    .nav-logo .logo-text {
+      font-weight: 800;
+      font-size: 18px;
+      color: var(--text);
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta {
+      background: var(--blue);
+      color: white !important;
+      padding: 8px 20px;
+      border-radius: 8px;
+      font-weight: 600 !important;
+      font-size: 14px !important;
+      transition: background 0.2s, transform 0.1s !important;
+    }
+    .nav-cta:hover { background: #2563EB !important; transform: translateY(-1px); }
+    .nav-hamburger {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--text);
+      margin: 5px 0;
+      transition: 0.3s;
+    }
+
+    /* ---- HERO ---- */
+    .hero {
+      padding: 80px 24px 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, rgba(59,130,246,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(59,130,246,0.12);
+      border: 1px solid rgba(59,130,246,0.3);
+      border-radius: 99px;
+      padding: 6px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--blue-bright);
+      margin-bottom: 24px;
+    }
+    .hero-badge .dot {
+      width: 7px;
+      height: 7px;
+      background: var(--blue);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(1.3); }
+    }
+    .hero h1 {
+      font-size: clamp(36px, 6vw, 72px);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -1.5px;
+      margin-bottom: 20px;
+    }
+    .hero h1 .highlight {
+      background: linear-gradient(135deg, var(--blue) 0%, var(--cyan) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-sub {
+      font-size: clamp(16px, 2.5vw, 20px);
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto 40px;
+      line-height: 1.5;
+    }
+    .ai-logos {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-bottom: 48px;
+    }
+    .ai-logo-chip {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--navy-card);
+      border: 1px solid var(--navy-border);
+      border-radius: 99px;
+      padding: 7px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+    .ai-logo-chip .chip-icon {
+      width: 18px;
+      height: 18px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 800;
+    }
+    .chip-gpt { background: #10A37F; color: white; }
+    .chip-perp { background: #6366F1; color: white; }
+    .chip-google { background: #4285F4; color: white; }
+    .chip-claude { background: #D97706; color: white; }
+
+    /* ---- URL INPUT ---- */
+    .hero-form {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .input-wrap {
+      display: flex;
+      background: var(--navy-card);
+      border: 2px solid var(--navy-border);
+      border-radius: 14px;
+      overflow: hidden;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      margin-bottom: 16px;
+    }
+    .input-wrap:focus-within {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 4px var(--blue-glow);
+    }
+    .url-input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      outline: none;
+      padding: 18px 20px;
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      color: var(--text);
+    }
+    .url-input::placeholder { color: var(--text-dim); }
+    .hero-btn {
+      background: var(--blue);
+      color: white;
+      border: none;
+      padding: 18px 28px;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.2s;
+    }
+    .hero-btn:hover { background: #2563EB; }
+    .hero-btn:active { transform: scale(0.98); }
+    .input-note {
+      font-size: 13px;
+      color: var(--text-dim);
+    }
+    .input-note span { color: var(--green); font-weight: 600; }
+
+    /* ---- SCORE PREVIEW ---- */
+    .score-preview {
+      margin-top: 64px;
+      display: flex;
+      justify-content: center;
+    }
+    .score-card-demo {
+      background: var(--navy-card);
+      border: 1px solid var(--navy-border);
+      border-radius: 20px;
+      padding: 32px 40px;
+      display: flex;
+      align-items: center;
+      gap: 48px;
+      flex-wrap: wrap;
+      justify-content: center;
+      max-width: 700px;
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+    .score-card-demo::after {
+      content: 'EXAMPLE REPORT';
+      position: absolute;
+      top: 14px;
+      right: -20px;
+      background: var(--amber);
+      color: #000;
+      font-size: 10px;
+      font-weight: 800;
+      padding: 4px 40px;
+      transform: rotate(35deg);
+      letter-spacing: 1px;
+    }
+    .demo-gauge {
+      width: 120px;
+      height: 120px;
+      position: relative;
+      flex-shrink: 0;
+    }
+    .demo-gauge svg { transform: rotate(-90deg); }
+    .demo-gauge .gauge-bg { fill: none; stroke: var(--navy-border); stroke-width: 10; }
+    .demo-gauge .gauge-fill {
+      fill: none;
+      stroke: var(--blue);
+      stroke-width: 10;
+      stroke-linecap: round;
+      stroke-dasharray: 301.6;
+      stroke-dashoffset: 90.48; /* ~70% */
+      animation: fillGauge 1.5s ease-out 0.5s both;
+    }
+    @keyframes fillGauge {
+      from { stroke-dashoffset: 301.6; }
+      to { stroke-dashoffset: 90.48; }
+    }
+    .gauge-label {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .gauge-label .score-num { font-size: 28px; font-weight: 900; color: var(--text); }
+    .gauge-label .score-max { font-size: 12px; color: var(--text-muted); }
+    .demo-cats {
+      flex: 1;
+      min-width: 260px;
+    }
+    .demo-cats h3 { font-size: 15px; font-weight: 700; margin-bottom: 16px; }
+    .demo-cat-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+      font-size: 13px;
+    }
+    .demo-cat-label { width: 140px; color: var(--text-muted); }
+    .demo-cat-bar-wrap {
+      flex: 1;
+      height: 6px;
+      background: var(--navy-border);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .demo-cat-bar {
+      height: 100%;
+      border-radius: 3px;
+      background: var(--blue);
+      transition: width 1s ease-out;
+    }
+    .demo-cat-val { width: 28px; text-align: right; font-weight: 700; color: var(--text); font-size: 12px; }
+    .demo-blur-row .demo-cat-label,
+    .demo-blur-row .demo-cat-val { filter: blur(4px); user-select: none; }
+    .demo-blur-row .demo-cat-bar-wrap { filter: blur(2px); }
+    .demo-lock-badge {
+      font-size: 11px;
+      color: var(--amber);
+      font-weight: 600;
+      margin-left: 4px;
+    }
+
+    /* ---- SECTIONS ---- */
+    section { padding: 80px 24px; }
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+    .section-label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.5px;
+      margin-bottom: 16px;
+    }
+    .section-sub {
+      font-size: 17px;
+      color: var(--text-muted);
+      max-width: 560px;
+      line-height: 1.6;
+    }
+
+    /* ---- HOW IT WORKS ---- */
+    #how-it-works { background: var(--navy-mid); }
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 32px;
+      margin-top: 48px;
+    }
+    .step {
+      background: var(--navy-card);
+      border: 1px solid var(--navy-border);
+      border-radius: 16px;
+      padding: 28px;
+      position: relative;
+    }
+    .step-num {
+      width: 40px;
+      height: 40px;
+      background: var(--blue-glow);
+      border: 1px solid rgba(59,130,246,0.4);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 16px;
+      color: var(--blue-bright);
+      margin-bottom: 16px;
+    }
+    .step h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+    .step p { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+    .step-arrow {
+      position: absolute;
+      right: -20px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--navy-border);
+      font-size: 24px;
+      z-index: 1;
+    }
+
+    /* ---- SCORING CATEGORIES ---- */
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 48px;
+    }
+    .cat-card {
+      background: var(--navy-card);
+      border: 1px solid var(--navy-border);
+      border-radius: 14px;
+      padding: 24px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .cat-card:hover { border-color: rgba(59,130,246,0.4); transform: translateY(-2px); }
+    .cat-icon {
+      font-size: 28px;
+      margin-bottom: 12px;
+    }
+    .cat-card h3 { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+    .cat-card p { font-size: 13px; color: var(--text-muted); line-height: 1.55; }
+    .cat-weight {
+      display: inline-block;
+      margin-top: 12px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--blue-bright);
+      background: rgba(59,130,246,0.1);
+      border-radius: 99px;
+      padding: 3px 10px;
+    }
+
+    /* ---- PRICING ---- */
+    #pricing { background: var(--navy-mid); }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+      margin-top: 48px;
+      align-items: start;
+    }
+    .pricing-card {
+      background: var(--navy-card);
+      border: 1px solid var(--navy-border);
+      border-radius: 18px;
+      padding: 28px;
+      position: relative;
+    }
+    .pricing-card.featured {
+      border-color: var(--blue);
+      box-shadow: 0 0 40px rgba(59,130,246,0.15);
+    }
+    .pricing-badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--blue);
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 16px;
+      border-radius: 99px;
+      white-space: nowrap;
+      letter-spacing: 0.5px;
+    }
+    .pricing-tier { font-size: 13px; font-weight: 700; color: var(--blue-bright); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+    .pricing-price { font-size: 42px; font-weight: 900; line-height: 1; margin-bottom: 4px; }
+    .pricing-price sup { font-size: 22px; font-weight: 700; vertical-align: top; margin-top: 8px; }
+    .pricing-per { font-size: 14px; color: var(--text-muted); margin-bottom: 20px; }
+    .pricing-desc { font-size: 14px; color: var(--text-muted); margin-bottom: 20px; line-height: 1.55; }
+    .pricing-features { list-style: none; margin-bottom: 28px; }
+    .pricing-features li {
+      font-size: 14px;
+      color: var(--text-muted);
+      padding: 6px 0;
+      border-bottom: 1px solid var(--navy-border);
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .pricing-features li:last-child { border: none; }
+    .pricing-features li::before { content: ''; display: block; width: 16px; height: 16px; background: var(--green); border-radius: 50%; flex-shrink: 0; margin-top: 2px; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='8' cy='8' r='8' fill='%2310B981'/%3E%3Cpath d='M4.5 8l2.5 2.5L11.5 5.5' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-size: cover; }
+    .pricing-btn {
+      display: block;
+      width: 100%;
+      padding: 14px;
+      border-radius: 10px;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      transition: 0.2s;
+      border: none;
+    }
+    .btn-primary { background: var(--blue); color: white; }
+    .btn-primary:hover { background: #2563EB; }
+    .btn-outline { background: transparent; color: var(--text); border: 1.5px solid var(--navy-border); }
+    .btn-outline:hover { border-color: var(--blue); color: var(--blue-bright); }
+
+    /* ---- TESTIMONIALS ---- */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-top: 48px;
+    }
+    .testimonial-card {
+      background: var(--navy-card);
+      border: 1px solid var(--navy-border);
+      border-radius: 16px;
+      padding: 28px;
+    }
+    .stars { color: var(--amber); font-size: 16px; margin-bottom: 14px; }
+    .testimonial-text {
+      font-size: 15px;
+      line-height: 1.65;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+    .testimonial-author { font-size: 13px; font-weight: 700; color: var(--text); }
+    .testimonial-role { font-size: 12px; color: var(--text-dim); margin-top: 2px; }
+
+    /* ---- FOR AGENCIES ---- */
+    #for-agencies {
+      background: linear-gradient(135deg, var(--navy-mid) 0%, #0d1528 100%);
+    }
+    .agency-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+      margin-top: 48px;
+    }
+    .agency-feature {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 28px;
+      align-items: flex-start;
+    }
+    .agency-icon {
+      width: 44px;
+      height: 44px;
+      background: rgba(59,130,246,0.12);
+      border: 1px solid rgba(59,130,246,0.3);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+    .agency-feature h4 { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+    .agency-feature p { font-size: 13px; color: var(--text-muted); line-height: 1.55; }
+    .agency-demo-card {
+      background: var(--navy-card);
+      border: 1px solid var(--navy-border);
+      border-radius: 18px;
+      padding: 28px;
+    }
+    .agency-demo-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+    .agency-demo-title { font-size: 14px; font-weight: 700; }
+    .agency-badge { background: var(--blue); color: white; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 99px; }
+    .agency-client-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--navy-border);
+      font-size: 13px;
+    }
+    .agency-client-row:last-child { border: none; }
+    .client-name { flex: 1; font-weight: 600; }
+    .client-score-badge {
+      padding: 3px 10px;
+      border-radius: 99px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .score-weak { background: rgba(239,68,68,0.15); color: #FCA5A5; }
+    .score-developing { background: rgba(245,158,11,0.15); color: #FCD34D; }
+    .score-strong { background: rgba(16,185,129,0.15); color: #6EE7B7; }
+
+    /* ---- TIERS ---- */
+    .tiers-grid {
+      display: flex;
+      gap: 0;
+      margin-top: 48px;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--navy-border);
+      flex-wrap: wrap;
+    }
+    .tier-cell {
+      flex: 1;
+      min-width: 120px;
+      padding: 24px 16px;
+      text-align: center;
+      border-right: 1px solid var(--navy-border);
+    }
+    .tier-cell:last-child { border: none; }
+    .tier-score { font-size: 13px; color: var(--text-dim); margin-bottom: 6px; }
+    .tier-label { font-size: 16px; font-weight: 800; margin-bottom: 4px; }
+    .tier-desc { font-size: 11px; color: var(--text-dim); }
+    .t-invisible { background: rgba(239,68,68,0.06); }
+    .t-invisible .tier-label { color: #FCA5A5; }
+    .t-weak { background: rgba(245,158,11,0.06); }
+    .t-weak .tier-label { color: #FCD34D; }
+    .t-developing { background: rgba(234,179,8,0.06); }
+    .t-developing .tier-label { color: #FDE68A; }
+    .t-strong { background: rgba(16,185,129,0.06); }
+    .t-strong .tier-label { color: #6EE7B7; }
+    .t-aiready { background: rgba(59,130,246,0.08); }
+    .t-aiready .tier-label { color: var(--blue-bright); }
+
+    /* ---- FAQ ---- */
+    #faq { background: var(--navy-mid); }
+    .faq-list { max-width: 780px; margin: 48px auto 0; }
+    .faq-item {
+      border: 1px solid var(--navy-border);
+      border-radius: 12px;
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+    .faq-question {
+      width: 100%;
+      background: var(--navy-card);
+      border: none;
+      padding: 20px 24px;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+    .faq-question:hover { background: #19243a; }
+    .faq-chevron { transition: transform 0.3s; font-size: 18px; color: var(--blue); flex-shrink: 0; }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease-out;
+    }
+    .faq-answer-inner {
+      padding: 0 24px 20px;
+      background: var(--navy-card);
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+    .faq-item.open .faq-chevron { transform: rotate(180deg); }
+    .faq-item.open .faq-answer { max-height: 300px; }
+
+    /* ---- CTA BOTTOM ---- */
+    .cta-section {
+      text-align: center;
+      padding: 100px 24px;
+      background: linear-gradient(135deg, var(--navy) 0%, #0d1528 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      bottom: -300px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, rgba(59,130,246,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-section h2 { font-size: clamp(28px, 4vw, 48px); font-weight: 900; margin-bottom: 16px; }
+    .cta-section p { font-size: 18px; color: var(--text-muted); margin-bottom: 40px; }
+    .cta-form { max-width: 520px; margin: 0 auto; }
+
+    /* ---- FOOTER ---- */
+    footer {
+      background: var(--navy-card);
+      border-top: 1px solid var(--navy-border);
+      padding: 40px 24px;
+      text-align: center;
+    }
+    .footer-inner { max-width: 1200px; margin: 0 auto; }
+    .footer-logo { font-size: 20px; font-weight: 800; margin-bottom: 12px; }
+    .footer-tagline { font-size: 14px; color: var(--text-dim); margin-bottom: 20px; }
+    .footer-links { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; margin-bottom: 24px; }
+    .footer-links a { font-size: 13px; color: var(--text-dim); text-decoration: none; }
+    .footer-links a:hover { color: var(--text-muted); }
+    .footer-copy { font-size: 12px; color: var(--text-dim); }
+
+    /* ---- RESPONSIVE ---- */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0; background: var(--navy-card); border-bottom: 1px solid var(--navy-border); padding: 16px 24px; gap: 16px; }
+      .nav-hamburger { display: block; }
+      .hero-btn { padding: 18px 16px; font-size: 14px; }
+      .input-wrap { flex-direction: column; }
+      .hero-btn { border-radius: 0 0 12px 12px; }
+      .agency-grid { grid-template-columns: 1fr; gap: 32px; }
+      .step-arrow { display: none; }
+      .tiers-grid { flex-direction: column; }
+      .tier-cell { border-right: none; border-bottom: 1px solid var(--navy-border); }
+      .tier-cell:last-child { border: none; }
+      .score-card-demo { padding: 24px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <div class="logo-icon">S</div>
+      <span class="logo-text">SearchScore</span>
+    </a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#how-it-works">How it works</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#for-agencies">For Agencies</a></li>
+      <li><a href="#hero-form" class="nav-cta">Get Free Score</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero-form">
+  <div class="hero-badge">
+    <span class="dot"></span>
+    GEO Audit Tool - Generative Engine Optimisation
+  </div>
+
+  <h1>Find out if <span class="highlight">AI can find you</span></h1>
+
+  <p class="hero-sub">Is your website visible to ChatGPT, Perplexity, Google AI Overviews and Claude? Get your free GEO score in under 60 seconds.</p>
+
+  <div class="ai-logos">
+    <div class="ai-logo-chip"><span class="chip-icon chip-gpt">G</span> ChatGPT</div>
+    <div class="ai-logo-chip"><span class="chip-icon chip-perp">P</span> Perplexity</div>
+    <div class="ai-logo-chip"><span class="chip-icon chip-google">A</span> AI Overviews</div>
+    <div class="ai-logo-chip"><span class="chip-icon chip-claude">C</span> Claude</div>
+  </div>
+
+  <div class="hero-form">
+    <div class="input-wrap">
+      <input type="url" class="url-input" id="hero-url" placeholder="https://yourwebsite.com" autocomplete="off" />
+      <button class="hero-btn" onclick="runAudit()">Get My GEO Score &rarr;</button>
+    </div>
+    <p class="input-note"><span>Free</span> - no sign-up required. Full results in seconds.</p>
+  </div>
+
+  <!-- DEMO SCORE CARD -->
+  <div class="score-preview">
+    <div class="score-card-demo">
+      <div class="demo-gauge">
+        <svg viewBox="0 0 120 120" width="120" height="120">
+          <circle class="gauge-bg" cx="60" cy="60" r="48"/>
+          <circle class="gauge-fill" cx="60" cy="60" r="48"/>
+        </svg>
+        <div class="gauge-label">
+          <span class="score-num">68</span>
+          <span class="score-max">/100</span>
+        </div>
+      </div>
+      <div class="demo-cats">
+        <h3>Developing - score breakdown</h3>
+        <div class="demo-cat-row">
+          <span class="demo-cat-label">AI Citability</span>
+          <div class="demo-cat-bar-wrap"><div class="demo-cat-bar" style="width:55%"></div></div>
+          <span class="demo-cat-val">55</span>
+        </div>
+        <div class="demo-cat-row">
+          <span class="demo-cat-label">Brand Authority</span>
+          <div class="demo-cat-bar-wrap"><div class="demo-cat-bar" style="width:72%"></div></div>
+          <span class="demo-cat-val">72</span>
+        </div>
+        <div class="demo-cat-row demo-blur-row">
+          <span class="demo-cat-label">E-E-A-T Content</span>
+          <div class="demo-cat-bar-wrap"><div class="demo-cat-bar" style="width:80%"></div></div>
+          <span class="demo-cat-val">80</span>
+          <span class="demo-lock-badge">🔒 Full Report</span>
+        </div>
+        <div class="demo-cat-row demo-blur-row">
+          <span class="demo-cat-label">Technical Setup</span>
+          <div class="demo-cat-bar-wrap"><div class="demo-cat-bar" style="width:90%"></div></div>
+          <span class="demo-cat-val">90</span>
+        </div>
+        <div class="demo-cat-row demo-blur-row">
+          <span class="demo-cat-label">Structured Data</span>
+          <div class="demo-cat-bar-wrap"><div class="demo-cat-bar" style="width:30%"></div></div>
+          <span class="demo-cat-val">30</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how-it-works">
+  <div class="section-inner">
+    <p class="section-label">How it works</p>
+    <h2 class="section-title">Three steps to AI-search clarity</h2>
+    <p class="section-sub">SearchScore analyses your site across six GEO categories and delivers an instant, actionable score.</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Enter your URL</h3>
+        <p>Paste any webpage or domain. No account needed for your free score.</p>
+        <span class="step-arrow">&#8594;</span>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>We audit 50+ signals</h3>
+        <p>Our engine checks AI bot access, structured data, E-E-A-T signals, schema markup, brand authority and more.</p>
+        <span class="step-arrow">&#8594;</span>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Get your GEO score</h3>
+        <p>See your score out of 100, your tier label, and - with a full report - exactly where to focus first.</p>
+        <span class="step-arrow">&#8594;</span>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h3>Track &amp; improve</h3>
+        <p>Monthly Monitor customers get weekly re-audits and change alerts so you never slide backwards.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCORING CATEGORIES -->
+<section id="categories">
+  <div class="section-inner">
+    <p class="section-label">What we measure</p>
+    <h2 class="section-title">Six categories. One score.</h2>
+    <p class="section-sub">We audit the signals that actually determine whether AI engines cite your content.</p>
+
+    <div class="categories-grid">
+      <div class="cat-card">
+        <div class="cat-icon">🤖</div>
+        <h3>AI Citability &amp; Visibility</h3>
+        <p>llms.txt file presence, AI bot access in robots.txt (GPTBot, ClaudeBot, PerplexityBot), structured citations and crawlability for generative engines.</p>
+        <span class="cat-weight">25% weight</span>
+      </div>
+      <div class="cat-card">
+        <div class="cat-icon">🏆</div>
+        <h3>Brand Authority Signals</h3>
+        <p>Wikipedia / Wikidata presence, consistent name-address-phone (NAP) data across the web, and social profile linking patterns.</p>
+        <span class="cat-weight">20% weight</span>
+      </div>
+      <div class="cat-card">
+        <div class="cat-icon">✍️</div>
+        <h3>Content Quality &amp; E-E-A-T</h3>
+        <p>Author bios with credentials, bylines on articles, publication and update dates, and fact-check or source links.</p>
+        <span class="cat-weight">20% weight</span>
+      </div>
+      <div class="cat-card">
+        <div class="cat-icon">⚙️</div>
+        <h3>Technical Foundations</h3>
+        <p>HTTPS enforcement, page speed signals, canonical tag implementation and sitemap.xml availability.</p>
+        <span class="cat-weight">15% weight</span>
+      </div>
+      <div class="cat-card">
+        <div class="cat-icon">🗂️</div>
+        <h3>Structured Data</h3>
+        <p>Schema.org type coverage - Article, Person, Organisation, FAQPage and more. The vocabulary AI engines rely on to understand your content.</p>
+        <span class="cat-weight">10% weight</span>
+      </div>
+      <div class="cat-card">
+        <div class="cat-icon">📡</div>
+        <h3>Platform Optimisation</h3>
+        <p>OpenGraph tags, Twitter Cards, and canonical URL consistency - the metadata layer that shapes how your content is previewed and shared.</p>
+        <span class="cat-weight">10% weight</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCORE TIERS -->
+<section style="background: var(--navy-mid); padding: 60px 24px;">
+  <div class="section-inner">
+    <p class="section-label">Score tiers</p>
+    <h2 class="section-title">Where do you stand?</h2>
+    <p class="section-sub">Every site lands in one of five tiers. The goal is AI-Ready.</p>
+    <div class="tiers-grid">
+      <div class="tier-cell t-invisible">
+        <div class="tier-score">0 - 30</div>
+        <div class="tier-label">Invisible</div>
+        <div class="tier-desc">AI engines cannot find or cite you</div>
+      </div>
+      <div class="tier-cell t-weak">
+        <div class="tier-score">31 - 50</div>
+        <div class="tier-label">Weak</div>
+        <div class="tier-desc">Rarely cited. Major gaps to fix</div>
+      </div>
+      <div class="tier-cell t-developing">
+        <div class="tier-score">51 - 70</div>
+        <div class="tier-label">Developing</div>
+        <div class="tier-desc">Some visibility. Room to improve</div>
+      </div>
+      <div class="tier-cell t-strong">
+        <div class="tier-score">71 - 85</div>
+        <div class="tier-label">Strong</div>
+        <div class="tier-desc">Regularly cited. Optimise further</div>
+      </div>
+      <div class="tier-cell t-aiready">
+        <div class="tier-score">86 - 100</div>
+        <div class="tier-label">AI-Ready</div>
+        <div class="tier-desc">Top tier. AI engines love your site</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="section-inner">
+    <p class="section-label">Social proof</p>
+    <h2 class="section-title">What our users say</h2>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="testimonial-text">"We ran SearchScore on our top 10 client sites and found that 8 of them were completely blocking AI bots. The audit paid for itself in the first week."</p>
+        <div class="testimonial-author">Head of SEO at a UK digital agency</div>
+        <div class="testimonial-role">Agency with 40+ clients</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="testimonial-text">"I'd been doing SEO for 10 years and honestly had no idea GEO was a thing until I saw my score. Scored 28 out of 100 - a proper wake-up call."</p>
+        <div class="testimonial-author">Freelance SEO consultant</div>
+        <div class="testimonial-role">Works with B2B SaaS brands</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="testimonial-text">"The structured data gap analysis alone was worth it. We went from Developing to Strong in six weeks by following the recommended fixes."</p>
+        <div class="testimonial-author">Head of Marketing at a B2B SaaS company</div>
+        <div class="testimonial-role">Series A startup, London</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="section-inner">
+    <p class="section-label">Pricing</p>
+    <h2 class="section-title">Start free. Unlock the detail.</h2>
+    <p class="section-sub">Your free score tells you where you stand. A full report tells you exactly what to do about it.</p>
+
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <div class="pricing-tier">Free</div>
+        <div class="pricing-price"><sup>£</sup>0</div>
+        <div class="pricing-per">no credit card needed</div>
+        <div class="pricing-desc">Get your overall GEO score instantly. See your tier and which categories exist.</div>
+        <ul class="pricing-features">
+          <li>Overall score /100</li>
+          <li>Tier label</li>
+          <li>Category names visible</li>
+          <li>No sign-up required</li>
+        </ul>
+        <a href="#hero-form" class="pricing-btn btn-outline">Get Free Score</a>
+      </div>
+
+      <div class="pricing-card featured">
+        <div class="pricing-badge">MOST POPULAR</div>
+        <div class="pricing-tier">Full Report</div>
+        <div class="pricing-price"><sup>£</sup>97</div>
+        <div class="pricing-per">one-off payment</div>
+        <div class="pricing-desc">The complete picture. Every gap explained, every fix prioritised.</div>
+        <ul class="pricing-features">
+          <li>Everything in Free</li>
+          <li>Full category breakdown</li>
+          <li>Actionable fix list by priority</li>
+          <li>Downloadable PDF report</li>
+          <li>Issue-by-issue explanation</li>
+        </ul>
+        <a href="#" class="pricing-btn btn-primary">Buy Full Report - £97</a>
+      </div>
+
+      <div class="pricing-card">
+        <div class="pricing-tier">Monthly Monitor</div>
+        <div class="pricing-price"><sup>£</sup>49</div>
+        <div class="pricing-per">per month, cancel anytime</div>
+        <div class="pricing-desc">Stay ahead of AI algorithm shifts with weekly re-audits and change alerts.</div>
+        <ul class="pricing-features">
+          <li>Everything in Full Report</li>
+          <li>Weekly automated re-audits</li>
+          <li>Score change alerts</li>
+          <li>Progress tracking over time</li>
+        </ul>
+        <a href="#" class="pricing-btn btn-outline">Start Monthly Monitor</a>
+      </div>
+
+      <div class="pricing-card">
+        <div class="pricing-tier">Agency Pro</div>
+        <div class="pricing-price"><sup>£</sup>199</div>
+        <div class="pricing-per">per month, cancel anytime</div>
+        <div class="pricing-desc">Run GEO audits for all your clients under one roof with white-label output.</div>
+        <ul class="pricing-features">
+          <li>Unlimited client audits</li>
+          <li>White-label PDF reports</li>
+          <li>Client dashboard access</li>
+          <li>Bulk URL auditing</li>
+          <li>Priority support</li>
+        </ul>
+        <a href="#for-agencies" class="pricing-btn btn-outline">Learn About Agency Pro</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOR AGENCIES -->
+<section id="for-agencies">
+  <div class="section-inner">
+    <p class="section-label">For Agencies</p>
+    <h2 class="section-title">Add GEO auditing to your service stack</h2>
+    <p class="section-sub">Agency Pro turns SearchScore into a client-facing tool with your branding. Deliver new value without extra headcount.</p>
+
+    <div class="agency-grid">
+      <div>
+        <div class="agency-feature">
+          <div class="agency-icon">📊</div>
+          <div>
+            <h4>Client dashboard</h4>
+            <p>All your client sites in one view. See who's AI-Ready and who's Invisible at a glance.</p>
+          </div>
+        </div>
+        <div class="agency-feature">
+          <div class="agency-icon">🏷️</div>
+          <div>
+            <h4>White-label PDF reports</h4>
+            <p>Export branded reports with your logo and agency colours. Send straight to clients without re-formatting.</p>
+          </div>
+        </div>
+        <div class="agency-feature">
+          <div class="agency-icon">🔄</div>
+          <div>
+            <h4>Unlimited audits</h4>
+            <p>No per-URL limits. Audit every client site as often as you like. Weekly monitoring included.</p>
+          </div>
+        </div>
+        <div class="agency-feature">
+          <div class="agency-icon">⚡</div>
+          <div>
+            <h4>Bulk URL upload</h4>
+            <p>Drop in a list of URLs and run 50 audits in parallel. Perfect for onboarding new clients fast.</p>
+          </div>
+        </div>
+        <a href="#" class="pricing-btn btn-primary" style="display:inline-block; padding: 14px 32px; text-decoration:none; width:auto;">Start Agency Pro - £199/mo</a>
+      </div>
+
+      <div class="agency-demo-card">
+        <div class="agency-demo-header">
+          <span class="agency-demo-title">Your Agency Dashboard</span>
+          <span class="agency-badge">Agency Pro</span>
+        </div>
+        <div class="agency-client-row">
+          <span class="client-name">client-alpha.co.uk</span>
+          <span class="client-score-badge score-weak">32 - Weak</span>
+        </div>
+        <div class="agency-client-row">
+          <span class="client-name">shopbravo.com</span>
+          <span class="client-score-badge score-developing">61 - Developing</span>
+        </div>
+        <div class="agency-client-row">
+          <span class="client-name">charlieservices.io</span>
+          <span class="client-score-badge score-strong">78 - Strong</span>
+        </div>
+        <div class="agency-client-row">
+          <span class="client-name">deltagroup.co.uk</span>
+          <span class="client-score-badge score-weak">24 - Invisible</span>
+        </div>
+        <div class="agency-client-row">
+          <span class="client-name">echo-media.com</span>
+          <span class="client-score-badge score-developing">58 - Developing</span>
+        </div>
+        <div style="margin-top:16px; text-align:center;">
+          <span style="font-size:12px; color: var(--text-dim);">5 of 23 sites shown - all AI-Invisible clients flagged</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="section-inner">
+    <p class="section-label">Questions</p>
+    <h2 class="section-title" style="text-align:center;">Frequently asked questions</h2>
+
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          What is GEO (Generative Engine Optimisation)?
+          <span class="faq-chevron">&#8964;</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            GEO is the practice of optimising your website so it is cited, quoted and recommended by AI-powered search engines such as ChatGPT, Perplexity, Google AI Overviews and Claude. Unlike traditional SEO (which targets ten blue links), GEO focuses on the signals that large language models use when deciding which sources to trust and reference in their answers.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Is the free score really free? What's the catch?
+          <span class="faq-chevron">&#8964;</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Completely free. You enter a URL, we analyse it, and you get your overall GEO score out of 100 with your tier label. No email required, no credit card, no trial period. The free score is permanently free. We make our money when you want the full category breakdown and actionable fix list - that's the paid report.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          How is the score calculated?
+          <span class="faq-chevron">&#8964;</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            We audit six categories - AI Citability, Brand Authority, Content Quality and E-E-A-T, Technical Foundations, Structured Data, and Platform Optimisation. Each category scores 0-100 and carries a different weight in the final score (25%, 20%, 20%, 15%, 10%, 10%). We check over 50 individual signals including llms.txt presence, robots.txt AI bot rules, schema markup, OpenGraph tags, author bios and Wikipedia presence.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          How long does an audit take?
+          <span class="faq-chevron">&#8964;</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Most audits complete in under 30 seconds. Complex sites with many redirects or slow servers may take up to 60 seconds. We cache results for 24 hours so if you run the same URL twice in a day the second result is instant.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          What's the difference between GEO and traditional SEO?
+          <span class="faq-chevron">&#8964;</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Traditional SEO targets ranking positions in keyword-based search results. GEO targets inclusion in AI-generated answers. The signals overlap but are not identical - for example, GEO places heavy emphasis on structured data schema, explicit AI bot permissions, llms.txt files, E-E-A-T author signals and Wikipedia presence, which matter far less in traditional SEO.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Does SearchScore work for any type of website?
+          <span class="faq-chevron">&#8964;</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Yes. SearchScore audits any publicly accessible website - B2B SaaS, ecommerce, publishers, service businesses, agencies, blogs. The scoring categories are weighted to reflect the signals that matter for AI citability regardless of industry. If your site is behind a login wall or blocks all bots, some checks will score lower by default.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Can I white-label reports for my clients?
+          <span class="faq-chevron">&#8964;</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Yes - white-label PDF reports are included in Agency Pro (£199/month). You can add your agency logo and brand colours to every report. Clients receive a professional document with no SearchScore branding unless you choose to include it.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- BOTTOM CTA -->
+<section class="cta-section">
+  <h2>Ready to see your <span style="color: var(--blue-bright);">GEO score?</span></h2>
+  <p>Join hundreds of SEOs and marketers who are already ahead of the AI curve.</p>
+  <div class="cta-form">
+    <div class="input-wrap">
+      <input type="url" class="url-input" id="cta-url" placeholder="https://yourwebsite.com" autocomplete="off" />
+      <button class="hero-btn" onclick="runAuditCta()">Get My Score &rarr;</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">SearchScore</div>
+    <div class="footer-tagline">Find out if AI can find you.</div>
+    <div class="footer-links">
+      <a href="#how-it-works">How it works</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#for-agencies">For Agencies</a>
+      <a href="#faq">FAQ</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms</a>
+    </div>
+    <div class="footer-copy">&copy; 2025 SearchScore. All rights reserved. Built for the age of AI search.</div>
+  </div>
+</footer>
+
+<script>
+  // Mobile nav
+  document.getElementById('hamburger').addEventListener('click', function() {
+    document.getElementById('nav-links').classList.toggle('open');
+  });
+
+  // FAQ toggle
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!wasOpen) item.classList.add('open');
+  }
+
+  // URL audit redirect
+  function runAudit() {
+    const url = document.getElementById('hero-url').value.trim();
+    if (!url) { document.getElementById('hero-url').focus(); return; }
+    const encoded = encodeURIComponent(url);
+    window.location.href = 'results.html?url=' + encoded;
+  }
+
+  function runAuditCta() {
+    const url = document.getElementById('cta-url').value.trim();
+    if (!url) { document.getElementById('cta-url').focus(); return; }
+    const encoded = encodeURIComponent(url);
+    window.location.href = 'results.html?url=' + encoded;
+  }
+
+  // Enter key support
+  document.getElementById('hero-url').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') runAudit();
+  });
+  document.getElementById('cta-url').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') runAuditCta();
+  });
+
+  // Animate category bars on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.width = entry.target.dataset.width;
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.demo-cat-bar').forEach(bar => {
+    const w = bar.style.width;
+    bar.style.width = '0%';
+    bar.dataset.width = w;
+    observer.observe(bar);
+  });
+</script>
+
+</body>
+</html>
