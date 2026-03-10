@@ -1887,6 +1887,164 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     });
   }, { threshold: 0.5 });
   scoreObserver.observe(scoreNum);
+
+  // ===========================================
+  // GTM EVENT TRACKING
+  // ===========================================
+  
+  // Helper: Push to dataLayer
+  function trackEvent(eventName, eventData) {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: eventName,
+      ...eventData,
+      page: window.location.pathname,
+      timestamp: new Date().toISOString()
+    });
+    console.log('[GTM]', eventName, eventData);
+  }
+
+  // 1. Form Submissions
+  const heroForm = document.getElementById('hero-url');
+  const ctaForm = document.getElementById('cta-url');
+  
+  if (heroForm) {
+    heroForm.addEventListener('change', function() {
+      trackEvent('form_field_completed', { form: 'hero', field: 'url', value: this.value.substring(0, 50) });
+    });
+  }
+  if (ctaForm) {
+    ctaForm.addEventListener('change', function() {
+      trackEvent('form_field_completed', { form: 'cta', field: 'url', value: this.value.substring(0, 50) });
+    });
+  }
+
+  // 2. Button Clicks - All CTA buttons
+  document.querySelectorAll('button, a.pricing-btn, .nav-cta').forEach(function(el) {
+    el.addEventListener('click', function(e) {
+      let buttonText = this.textContent.trim().substring(0, 50);
+      let buttonType = 'generic';
+      
+      // Identify button type
+      if (this.classList.contains('hero-btn')) buttonType = 'hero_submit';
+      else if (this.classList.contains('nav-cta')) buttonType = 'nav_cta';
+      else if (this.textContent.includes('Full Report')) buttonType = 'pricing_full_report';
+      else if (this.textContent.includes('Monthly Monitor')) buttonType = 'pricing_monthly_monitor';
+      else if (this.textContent.includes('Agency Pro')) buttonType = 'pricing_agency_pro';
+      else if (this.textContent.includes('Free Score')) buttonType = 'cta_free_score';
+      else if (this.getAttribute('href') === '#hero-form') buttonType = 'scroll_to_form';
+      
+      trackEvent('button_click', { 
+        button_type: buttonType,
+        button_text: buttonText,
+        button_location: getSection(this)
+      });
+    });
+  });
+
+  // Helper: Get section name
+  function getSection(el) {
+    const section = el.closest('section');
+    if (section) {
+      const id = section.id || section.querySelector('.section-title, h1')?.textContent?.trim().substring(0, 30);
+      return id || 'unknown';
+    }
+    return 'nav';
+  }
+
+  // 3. Scroll Depth Tracking
+  const scrollThresholds = [25, 50, 75, 100];
+  const scrolled = new Set();
+  
+  window.addEventListener('scroll', function() {
+    const scrollPercent = Math.round((window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100);
+    
+    scrollThresholds.forEach(function(threshold) {
+      if (scrollPercent >= threshold && !scrolled.has(threshold)) {
+        scrolled.add(threshold);
+        trackEvent('scroll_depth', { depth: threshold });
+      }
+    });
+  });
+
+  // 4. Time on Page
+  const timeIntervals = [30, 60, 120, 300]; // seconds
+  timeIntervals.forEach(function(seconds) {
+    setTimeout(function() {
+      trackEvent('time_on_page', { seconds: seconds });
+    }, seconds * 1000);
+  });
+
+  // 5. Section Views (Intersection Observer)
+  const sectionObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        const sectionId = entry.target.id || entry.target.closest('section')?.id || 'unknown';
+        trackEvent('section_view', { section: sectionId });
+      }
+    });
+  }, { threshold: 0.5 });
+  
+  document.querySelectorAll('section').forEach(function(section) {
+    sectionObserver.observe(section);
+  });
+
+  // 6. Outbound Link Clicks
+  document.querySelectorAll('a[href^="http"]').forEach(function(link) {
+    if (!link.href.includes('searchscore')) {
+      link.addEventListener('click', function() {
+        trackEvent('outbound_click', {
+          url: this.href,
+          domain: this.hostname
+        });
+      });
+    }
+  });
+
+  // 7. Pricing Card Views
+  const pricingObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        const tier = entry.target.querySelector('.pricing-tier')?.textContent?.trim();
+        if (tier) {
+          trackEvent('pricing_view', { tier: tier });
+        }
+      }
+    });
+  }, { threshold: 0.5 });
+  
+  document.querySelectorAll('.pricing-card').forEach(function(card) {
+    pricingObserver.observe(card);
+  });
+
+  // 8. FAQ Accordion Opens
+  document.querySelectorAll('.faq-question').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      const question = this.textContent.trim().substring(0, 50);
+      trackEvent('faq_open', { question: question });
+    });
+  });
+
+  // 9. Demo Score Card View
+  const demoCardObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        trackEvent('demo_score_view', { score: 68 });
+      }
+    });
+  }, { threshold: 0.3 });
+  
+  const demoCard = document.querySelector('.score-card-demo');
+  if (demoCard) {
+    demoCardObserver.observe(demoCard);
+  }
+
+  // 10. Page Loaded - Initial Event
+  trackEvent('page_view', { 
+    page_title: document.title,
+    page_url: window.location.href
+  });
+
 </script>
 
 </body>
